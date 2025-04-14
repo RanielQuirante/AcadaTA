@@ -1,4 +1,4 @@
-# AdacaTA
+# AcadaTA
 
 This project showcases a .NET 8 Web API using Entity Framework Core (Code First), AutoMapper, and Repository Pattern. It also contains unit tests for both controllers and services.
 
@@ -13,7 +13,7 @@ This project showcases a .NET 8 Web API using Entity Framework Core (Code First)
 
 1. Clone the repository to your local machine:
    ```sh
-   git clone https://github.com/RanielQuirante/AdacaTA.git
+   git clone https://github.com/RanielQuirante/AcadaTA.git
 
 2. Open the solution in Visual Studio.
 
@@ -36,10 +36,53 @@ This project showcases a .NET 8 Web API using Entity Framework Core (Code First)
     ![image](https://github.com/user-attachments/assets/26378473-fc0d-4096-a65f-d2eab9b3a316)
 
 
-### Running the Application
-1. Open the solution in Visual Studio.
-2. Set the WebApi project as the startup project.
-3. Run the application.
+# Running the Application
+
+You can run the AcadaTA Web API in two different ways: locally on your machine or using Docker. Choose the one that best fits your development workflow.
+
+## Option 1: Local Machine Setup
+
+### Clone the Repository & Open Solution
+Clone the repo and open the solution in Visual Studio.
+
+### Set Startup Project
+Set `AcadaTA.WebApi` as the startup project.
+
+### Developer PowerShell
+Open your Developer PowerShell, navigate to your project folder, and verify your EF Core version:
+
+```sh
+dotnet ef --version
+```
+
+If it’s not version 9.0.4, update it:
+
+```sh
+dotnet tool update --global dotnet-ef
+```
+
+Verify the version again.
+
+### Database Setup
+Run the following command to create the database and necessary tables (like “Products”):
+
+```sh
+dotnet ef database update -p AcadaTA.Infrastructure -s AcadaTA.WebApi
+```
+
+### Run the Application
+Simply run the application from Visual Studio.
+
+## Option 2: Docker Setup
+
+If you prefer containerization, make sure Docker is installed. Then you can run the Web API using the command below:
+
+```sh
+docker run -d --name acadata-webapi -p 8080:8080 \
+  -e ASPNETCORE_ENVIRONMENT=Development \
+  -e ConnectionStrings__DefaultConnection="Server=host.docker.internal,1433;Database=YOUR_DATABASE_NAME;User Id=YOUR_USERNAME;Password=YOUR_PASSWORD;TrustServerCertificate=True;" \
+  ghcr.io/ranielquirante/acadata-webapi:latest
+```
 
 ## Technologies Used
 
@@ -48,6 +91,7 @@ This project showcases a .NET 8 Web API using Entity Framework Core (Code First)
 - MSSQL
 - Entity Framework Core (EF Core) - Code-First Approach
 - Repository Pattern
+- Github Workflow (CI/CD) with Docker
 
 ## Project Structure
 
