@@ -32,10 +32,10 @@ jobs:
         run: echo "value=$(echo '${{ github.actor }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:${{ github.sha }} .
+        run: docker build -t ghcr.io/${{ steps.actor_lc.outputs.value }}/acadata-webapi:${{ github.sha }} .
 
       - name: Push Docker image
-        run: docker push ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:${{ github.sha }}
+        run: docker push ghcr.io/${{ steps.actor_lc.outputs.value }}/acadata-webapi:${{ github.sha }}
 
       - name: Upload actor for deploy job
         run: echo "${{ steps.actor_lc.outputs.value }}" > actor.txt
