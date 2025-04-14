@@ -1,4 +1,6 @@
 # AcadaTA
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/RanielQuirante/AcadaTA/actions/runs/14457371023/job/40543367055)
+[![Static Badge](https://img.shields.io/badge/release-stable_tag_2504.0.0-blue)](https://github.com/RanielQuirante/AcadaTA/releases/tag/2504.0.0)
 
 This project showcases a .NET 8 Web API using Entity Framework Core (Code First), AutoMapper, and Repository Pattern. It also contains unit tests for both controllers and services.
 
