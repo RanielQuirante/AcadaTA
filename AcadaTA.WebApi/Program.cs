@@ -80,15 +80,14 @@ namespace AcadaTA.WebApi
                     }
                     await next();
                 });
-
-                // If database doesn't exists on the machine, it will deploy it
-                using (var scope = app.Services.CreateScope())
-                {
-                    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                    dbContext.Database.Migrate();
-                }
             }
 
+            // If database doesn't exists on the machine, it will deploy it
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                dbContext.Database.Migrate();
+            }
 
             app.MapGet("/health", () => Results.Ok("API is running."));
 
