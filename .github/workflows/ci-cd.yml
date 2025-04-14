@@ -10,19 +10,16 @@ on:
       - master
 
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Check out the code from the repo
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
-      # 2. Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.10.0
 
-      # 3. Log in to GitHub Container Registry (GHCR)
       - name: Log in to GHCR
         uses: docker/login-action@v3.4.0
         with:
@@ -30,22 +27,48 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT }}
 
-      # 4. Set lowercase GitHub username
       - name: Set lowercase actor
         id: actor_lc
         run: echo "value=$(echo '${{ github.actor }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
 
-      # 5. Build Docker image
       - name: Build Docker image
         run: docker build -t ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:${{ github.sha }} .
 
-      # 6. Push Docker image
       - name: Push Docker image
         run: docker push ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:${{ github.sha }}
 
-      # 7. Tag image as latest (optional)
-      - name: Tag image as latest
+      - name: Upload actor for deploy job
+        run: echo "${{ steps.actor_lc.outputs.value }}" > actor.txt
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-info
+          path: actor.txt
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-info
+
+      - name: Read lowercase actor
+        id: actor
+        run: echo "value=$(cat actor.txt)" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3.4.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Tag and push latest
         if: startsWith(github.ref, 'refs/heads/feature') || github.ref == 'refs/heads/master'
         run: |
-          docker tag ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:${{ github.sha }} ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:latest
-          docker push ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:latest
+          docker pull ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:${{ github.sha }}
+          docker tag ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:${{ github.sha }} ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:latest
+          docker push ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:latest
