@@ -3,12 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
       - master
       - 'feature-*'
   pull_request:
     branches:
-      - main
       - master
 
 jobs:
@@ -47,7 +45,7 @@ jobs:
 
       # 7. Tag image as latest (optional)
       - name: Tag image as latest
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: startsWith(github.ref, 'refs/heads/feature') || github.ref == 'refs/heads/master'
         run: |
           docker tag ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:${{ github.sha }} ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:latest
           docker push ghcr.io/${{ steps.actor_lc.outputs.value }}/adacata-webapi:latest
