@@ -1,0 +1,11 @@
+services:
+  webapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: acadata-api
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=${DB_CONNECTION_STRING}
