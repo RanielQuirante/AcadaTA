@@ -35,7 +35,7 @@ jobs:
       # 4. Build Docker image (includes build + test + publish inside Dockerfile)
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.actor }}/adacata-webapi:${{ github.sha }} .
+          docker build -t ghcr.io/$(echo "${{ github.actor }}" | tr '[:upper:]' '[:lower:]')/adacata-webapi:${{ github.sha }} .
 
       # 5. Push the image to GHCR with SHA tag
       - name: Push Docker image
