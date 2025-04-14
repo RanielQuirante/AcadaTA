@@ -67,8 +67,8 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: Tag and push latest
-        if: startsWith(github.ref, 'refs/heads/feature') || github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         run: |
-          docker pull ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:${{ github.sha }}
-          docker tag ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:${{ github.sha }} ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:latest
-          docker push ghcr.io/${{ steps.actor.outputs.value }}/adacata-webapi:latest
+          docker pull ghcr.io/${{ steps.actor.outputs.value }}/acadata-webapi:${{ github.sha }}
+          docker tag ghcr.io/${{ steps.actor.outputs.value }}/acadata-webapi:${{ github.sha }} ghcr.io/${{ steps.actor.outputs.value }}/acadata-webapi:latest
+          docker push ghcr.io/${{ steps.actor.outputs.value }}/acadata-webapi:latest
