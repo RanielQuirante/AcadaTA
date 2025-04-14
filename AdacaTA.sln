@@ -3,15 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcadaTA.Models", "AcadaTA.Models\AcadaTA.Models.csproj", "{C52E926E-8640-41FC-A4DC-4AC68AE85DAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcadaTA.Models", "AcadaTA.Models\AcadaTA.Models.csproj", "{C52E926E-8640-41FC-A4DC-4AC68AE85DAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcadaTA.Repositories", "AcadaTA.Repositories\AcadaTA.Repositories.csproj", "{211E84E2-F184-48C0-A75C-3A7570DCB004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcadaTA.Repositories", "AcadaTA.Repositories\AcadaTA.Repositories.csproj", "{211E84E2-F184-48C0-A75C-3A7570DCB004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcadaTA.Services", "AcadaTA.Services\AcadaTA.Services.csproj", "{E3C5674D-CF00-461E-AB6C-F1C9A23E86C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcadaTA.Services", "AcadaTA.Services\AcadaTA.Services.csproj", "{E3C5674D-CF00-461E-AB6C-F1C9A23E86C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcadaTA.Infrastructure", "AcadaTA.Infrastructure\AcadaTA.Infrastructure.csproj", "{661C589D-8585-4984-81F3-260BE8BE45AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcadaTA.Infrastructure", "AcadaTA.Infrastructure\AcadaTA.Infrastructure.csproj", "{661C589D-8585-4984-81F3-260BE8BE45AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcadaTA.WebApi", "AcadaTA.WebApi\AcadaTA.WebApi.csproj", "{462BFC48-784C-4C1F-AB38-9C47381770A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcadaTA.WebApi", "AcadaTA.WebApi\AcadaTA.WebApi.csproj", "{462BFC48-784C-4C1F-AB38-9C47381770A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcadaTA.Controllers.UnitTests", "AcadaTA.Controller.UnitTests\AcadaTA.Controllers.UnitTests.csproj", "{400E4CAD-0CE0-4789-81DA-6DFF5E835736}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{701E8897-7C23-4CDB-A7CA-8428E0AC189B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcadaTA.Services.UnitTests", "AcadaTA.Services.UnitTests\AcadaTA.Services.UnitTests.csproj", "{2842C79B-C894-4023-9274-80CA0305EF88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6931319E-7054-4BB3-96A0-547A4F327030}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +50,21 @@ Global
 		{462BFC48-784C-4C1F-AB38-9C47381770A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{462BFC48-784C-4C1F-AB38-9C47381770A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{462BFC48-784C-4C1F-AB38-9C47381770A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400E4CAD-0CE0-4789-81DA-6DFF5E835736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400E4CAD-0CE0-4789-81DA-6DFF5E835736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400E4CAD-0CE0-4789-81DA-6DFF5E835736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400E4CAD-0CE0-4789-81DA-6DFF5E835736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2842C79B-C894-4023-9274-80CA0305EF88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2842C79B-C894-4023-9274-80CA0305EF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2842C79B-C894-4023-9274-80CA0305EF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2842C79B-C894-4023-9274-80CA0305EF88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{400E4CAD-0CE0-4789-81DA-6DFF5E835736} = {701E8897-7C23-4CDB-A7CA-8428E0AC189B}
+		{2842C79B-C894-4023-9274-80CA0305EF88} = {701E8897-7C23-4CDB-A7CA-8428E0AC189B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11942468-D9EA-439C-A693-B82E33042666}
